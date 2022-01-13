@@ -1,12 +1,8 @@
-import model
-from pygame import display
+import model, zomby
+from pygame import draw, display
 
 screen = display.set_mode([1050, 650])
 
-
-def draw_zomby_2():
-    for zombys_2 in model.zombys_2:
-        zombys_2.draw_zomby([255, 10, 10], screen)
 
 def veiw():
     screen.fill([20, 255, 20])
@@ -30,7 +26,19 @@ def veiw():
         cletcas_5.draw(screen)
         model.add_cletca_5()
     for zombys_1 in model.zombys_1:
-        zombys_1.draw_zomby([255, 20, 20], screen)
+        zombys_1.draw_zomby([255, 10, 10], screen)
+    for zombys_2 in model.zombys_2:
+        zombys_2.draw_zomby([255,10,10],screen)
+    for zombys_3 in model.zombys_3:
+        zombys_3.draw_zomby([255,10,10],screen)
+    for zombys_4 in model.zombys_4:
+        zombys_4.draw_zomby([255, 10, 10], screen)
+    for zombys_5 in model.zombys_5:
+        zombys_5.draw_zomby([255, 10, 10], screen)
+    for zombys_6 in model.zombys_6:
+        zombys_6.draw_zomby([255, 10, 10], screen)
+    for zombys_7 in model.zombys_7:
+        zombys_7.draw_zomby([255, 10, 10], screen)
 
     display.flip()
 

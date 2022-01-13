@@ -1,8 +1,18 @@
-import pygame,model,veiw
+import pygame,model,veiw,random
 from pygame import event
 pygame.init()
 TIMER_DRAW_ZOMBY2=event.custom_type()
-pygame.time.set_timer(TIMER_DRAW_ZOMBY2,1000)
+pygame.time.set_timer(TIMER_DRAW_ZOMBY2,random.randint(0,2000),1)
+TIMER_DRAW_ZOMBY3=event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_ZOMBY3,random.randint(0,2000),1)
+TIMER_DRAW_ZOMBY4=event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_ZOMBY4,random.randint(0,2000),1)
+TIMER_DRAW_ZOMBY5=event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_ZOMBY5,random.randint(0,2000),1)
+TIMER_DRAW_ZOMBY6=event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_ZOMBY6,random.randint(2000,5000),1)
+TIMER_DRAW_ZOMBY7=event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_ZOMBY7,random.randint(2000,5000),1)
 def control():
     e = event.get()
 
@@ -11,7 +21,17 @@ def control():
         if r.type == pygame.QUIT:
             exit()
         if r.type==TIMER_DRAW_ZOMBY2:
-            veiw.draw_zomby_2()
+            model.add_zombi_2()
+        if r.type==TIMER_DRAW_ZOMBY3:
+            model.add_zombi_3()
+        if r.type==TIMER_DRAW_ZOMBY4:
+            model.add_zombi_4()
+        if r.type==TIMER_DRAW_ZOMBY5:
+            model.add_zombi_5()
+        if r.type==TIMER_DRAW_ZOMBY6:
+            model.add_zombi_6()
+        if r.type==TIMER_DRAW_ZOMBY7:
+            model.add_zombi_7()
 
     model.dvigenie_zomby()
 
