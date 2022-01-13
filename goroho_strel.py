@@ -3,6 +3,7 @@ from pygame import draw
 
 class Rastenie_goroh:
     def __init__(self,x,y):
+        self.damag=1
         self.x=x
         self.y=y
         self.obet_rasteniy=pygame.Rect(self.x,self.y,30,30)
@@ -11,4 +12,7 @@ class Rastenie_goroh:
 
     def draw_rastenie(self,screen):
         draw.rect(screen,[0,0,0],self.obet_rasteniy)
+
+    def draw_vistrel(self,screen):
+        draw.rect(screen,[0,0,0],self.obect_vistrel)
 

@@ -1,4 +1,4 @@
-import cletca_dly_rasteniy, zomby, random
+import cletca_dly_rasteniy, zomby, random,goroho_strel
 
 x1 = 950
 x2 = 950
@@ -34,7 +34,8 @@ zombys_4 = []
 zombys_5 = []
 zombys_6 = []
 zombys_7 = []
-
+goroho_strel1=None
+goroho_strels=[]
 
 def add_cletca_1():
     global cletcas_1, color_cletca_1, x1, col_cletca_1
@@ -175,6 +176,12 @@ def add_zombi_7():
     zomby_7 = zomby.vrag_zomby(1100,random.choice([90,180,270,360,450]))
     zombys_7.append(zomby_7)
 
+
+def add_rasteniy_1():
+    global goroho_strel1, goroho_strels
+    goroho_strel1 = goroho_strel.Rastenie_goroh(530,random.choice([120,210,300,390,480]))
+    goroho_strels.append(goroho_strel1)
+add_rasteniy_1()
 
 
 
