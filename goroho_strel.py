@@ -14,5 +14,5 @@ class Rastenie_goroh:
         draw.rect(screen,[0,0,0],self.obet_rasteniy)
 
     def draw_vistrel(self,screen):
-        draw.rect(screen,[0,0,0],self.obect_vistrel)
+        draw.rect(screen,[255,0,0],self.obect_vistrel)
 

@@ -41,6 +41,8 @@ def veiw():
         zombys_7.draw_zomby([255, 10, 10], screen)
     for goroho_strels in model.goroho_strels:
         goroho_strels.draw_rastenie(screen)
+    for goroho_strel_vistrel in model.goroho_strel_vistrels:
+        goroho_strel_vistrel.draw_vistrel(screen)
 
 
     display.flip()

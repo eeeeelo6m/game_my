@@ -36,6 +36,8 @@ zombys_6 = []
 zombys_7 = []
 goroho_strel1=None
 goroho_strels=[]
+goroho_strel_vistrel=None
+goroho_strel_vistrels=[]
 
 def add_cletca_1():
     global cletcas_1, color_cletca_1, x1, col_cletca_1
@@ -182,6 +184,20 @@ def add_rasteniy_1():
     goroho_strel1 = goroho_strel.Rastenie_goroh(530,random.choice([120,210,300,390,480]))
     goroho_strels.append(goroho_strel1)
 add_rasteniy_1()
+
+
+def groho_strel_vistrel():
+    global goroho_strel_vistrel,goroho_strel_vistrels
+    goroho_strel_vistrel=goroho_strel.Rastenie_goroh(goroho_strel1.x,goroho_strel1.y)
+    goroho_strel_vistrels.append(goroho_strel_vistrel)
+
+def dvigenie_vistrel():
+    global goroho_strel_vistrel
+    if goroho_strel_vistrel is not None:
+        goroho_strel_vistrel.obect_vistrel.x +=1
+
+
+
 
 
 
