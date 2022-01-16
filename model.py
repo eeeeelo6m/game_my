@@ -38,6 +38,7 @@ goroho_strel1=None
 goroho_strels=[]
 goroho_strel_vistrel=None
 goroho_strel_vistrels=[]
+zombys_1.append(zomby_1)
 
 def add_cletca_1():
     global cletcas_1, color_cletca_1, x1, col_cletca_1
@@ -192,9 +193,22 @@ def groho_strel_vistrel():
     goroho_strel_vistrels.append(goroho_strel_vistrel)
 
 def dvigenie_vistrel():
-    global goroho_strel_vistrel
-    if goroho_strel_vistrel is not None:
-        goroho_strel_vistrel.obect_vistrel.x +=1
+    global goroho_strel_vistrels
+    vistrel=len(goroho_strel_vistrels)
+    if vistrel>=1:
+        for goroho_strel_vistrel in goroho_strel_vistrels:
+            goroho_strel_vistrel.obect_vistrel.x +=3
+
+
+def popodaniy_vistrel():
+    a=len(goroho_strel_vistrels)
+    if a>=1:
+        for goroho_strel_vistrel in goroho_strel_vistrels:
+            if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1):
+                zomby_1.heal-=goroho_strel_vistrel.gamag
+
+
+
 
 
 
@@ -203,5 +217,6 @@ def dvigenie_vistrel():
 
 
 def step():
-    global zombys_1, zomby_1
-    zombys_1.append(zomby_1)
+    popodaniy_vistrel()
+    print(zomby_1.heal)
+
