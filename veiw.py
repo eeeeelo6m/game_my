@@ -25,27 +25,33 @@ def veiw():
     for cletcas_5 in model.cletcas_5:
         cletcas_5.draw(screen)
         model.add_cletca_5()
+
     for zombys_1 in model.zombys_1:
-        zombys_1.draw_zomby([255, 10, 10], screen)
+        if model.zomby_1 is not None:
+            zombys_1.draw_zomby([255, 10, 10], screen)
     for zombys_2 in model.zombys_2:
-        zombys_2.draw_zomby([255,10,10],screen)
+        if model.zomby_2 is not None:
+            zombys_2.draw_zomby([255, 10, 10], screen)
     for zombys_3 in model.zombys_3:
-        zombys_3.draw_zomby([255,10,10],screen)
+        if model.zomby_3 is not None:
+            zombys_3.draw_zomby([255, 10, 10], screen)
     for zombys_4 in model.zombys_4:
-        zombys_4.draw_zomby([255, 10, 10], screen)
+        if model.zomby_4 is not None:
+            zombys_4.draw_zomby([255, 10, 10], screen)
     for zombys_5 in model.zombys_5:
-        zombys_5.draw_zomby([255, 10, 10], screen)
+        if model.zomby_5 is not None:
+            zombys_5.draw_zomby([255, 10, 10], screen)
     for zombys_6 in model.zombys_6:
-        zombys_6.draw_zomby([255, 10, 10], screen)
+        if model.zomby_6 is not None:
+            zombys_6.draw_zomby([255, 10, 10], screen)
     for zombys_7 in model.zombys_7:
-        zombys_7.draw_zomby([255, 10, 10], screen)
+        if model.zomby_7 is not None:
+            zombys_7.draw_zomby([255, 10, 10], screen)
+
+
     for goroho_strels in model.goroho_strels:
         goroho_strels.draw_rastenie(screen)
     for goroho_strel_vistrel in model.goroho_strel_vistrels:
         goroho_strel_vistrel.draw_vistrel(screen)
 
-
     display.flip()
-
-
-

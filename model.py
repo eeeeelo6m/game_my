@@ -1,4 +1,4 @@
-import cletca_dly_rasteniy, zomby, random,goroho_strel
+import cletca_dly_rasteniy, zomby, random, goroho_strel
 
 x1 = 950
 x2 = 950
@@ -20,13 +20,13 @@ cletcas_2 = []
 cletcas_3 = []
 cletcas_4 = []
 cletcas_5 = []
-zomby_1 = zomby.vrag_zomby(1100,90)
-zomby_2 = None
-zomby_3 = None
-zomby_4 = None
-zomby_5 = None
-zomby_6 = None
-zomby_7 = None
+zomby_1 = zomby.vrag_zomby(1100, 90)
+zomby_2 = zomby.vrag_zomby(1100, 180)
+zomby_3 = zomby.vrag_zomby(1100, 270)
+zomby_4 = zomby.vrag_zomby(1100, 360)
+zomby_5 = zomby.vrag_zomby(1100, 450)
+zomby_6 = zomby.vrag_zomby(1100, random.choice([90,180,270,360,450]))
+zomby_7 = zomby.vrag_zomby(1100, 90)
 zombys_1 = []
 zombys_2 = []
 zombys_3 = []
@@ -34,11 +34,12 @@ zombys_4 = []
 zombys_5 = []
 zombys_6 = []
 zombys_7 = []
-goroho_strel1=None
-goroho_strels=[]
-goroho_strel_vistrel=None
-goroho_strel_vistrels=[]
+goroho_strel1 = None
+goroho_strels = []
+goroho_strel_vistrel = None
+goroho_strel_vistrels = []
 zombys_1.append(zomby_1)
+
 
 def add_cletca_1():
     global cletcas_1, color_cletca_1, x1, col_cletca_1
@@ -129,94 +130,157 @@ add_cletca_5()
 
 def dvigenie_zomby():
     global zomby_1, zomby_2
-    zomby_1.obect_zomby.x -= 1
+    if zomby_1 is not None:
+        zomby_1.obect_zomby.x -= 1
     if zomby_2 is not None:
         zomby_2.obect_zomby.x -= 1
     if zomby_3 is not None:
-        zomby_3.obect_zomby.x-=1
+        zomby_3.obect_zomby.x -= 1
     if zomby_4 is not None:
         zomby_4.obect_zomby.x -= 1
     if zomby_5 is not None:
-        zomby_5.obect_zomby.x-=1
+        zomby_5.obect_zomby.x -= 1
     if zomby_6 is not None:
         zomby_6.obect_zomby.x -= 1
     if zomby_7 is not None:
-        zomby_7.obect_zomby.x-=1
+        zomby_7.obect_zomby.x -= 1 / 25
 
 
 def add_zombi_2():
     global zomby_2, zombys_2
-    zomby_2 = zomby.vrag_zomby(1100,180)
+    zomby_2 = zomby.vrag_zomby(1100, 180)
     zombys_2.append(zomby_2)
 
 
 def add_zombi_3():
     global zomby_3, zombys_3
-    zomby_3 = zomby.vrag_zomby(1100,270)
+    zomby_3 = zomby.vrag_zomby(1100, 270)
     zombys_3.append(zomby_3)
 
 
 def add_zombi_4():
     global zomby_4, zombys_4
-    zomby_4 = zomby.vrag_zomby(1100,360)
+    zomby_4 = zomby.vrag_zomby(1100, 360)
     zombys_4.append(zomby_4)
 
 
 def add_zombi_5():
     global zomby_5, zombys_5
-    zomby_5 = zomby.vrag_zomby(1100,450)
+    zomby_5 = zomby.vrag_zomby(1100, 450)
     zombys_5.append(zomby_5)
 
 
 def add_zombi_6():
     global zomby_6, zombys_6
-    zomby_6 = zomby.vrag_zomby(1100,random.choice([90,180,270,360,450]))
+    zomby_6 = zomby.vrag_zomby(1100, random.choice([90, 180, 270, 360, 450]))
     zombys_6.append(zomby_6)
 
 
 def add_zombi_7():
     global zomby_7, zombys_7
-    zomby_7 = zomby.vrag_zomby(1100,random.choice([90,180,270,360,450]))
+    zomby_7 = zomby.vrag_zomby(1100, random.choice([90, 180, 270, 360, 450]))
     zombys_7.append(zomby_7)
 
 
 def add_rasteniy_1():
     global goroho_strel1, goroho_strels
-    goroho_strel1 = goroho_strel.Rastenie_goroh(530,random.choice([120,210,300,390,480]))
+    goroho_strel1 = goroho_strel.Rastenie_goroh(170, 120)
     goroho_strels.append(goroho_strel1)
+    goroho_strel1 = goroho_strel.Rastenie_goroh(170, 210)
+    goroho_strels.append(goroho_strel1)
+    goroho_strel1 = goroho_strel.Rastenie_goroh(170, 300)
+    goroho_strels.append(goroho_strel1)
+    goroho_strel1 = goroho_strel.Rastenie_goroh(170, 390)
+    goroho_strels.append(goroho_strel1)
+    goroho_strel1 = goroho_strel.Rastenie_goroh(170, 480)
+    goroho_strels.append(goroho_strel1)
+
+
+
 add_rasteniy_1()
 
 
 def groho_strel_vistrel():
-    global goroho_strel_vistrel,goroho_strel_vistrels
-    goroho_strel_vistrel=goroho_strel.Rastenie_goroh(goroho_strel1.x,goroho_strel1.y)
-    goroho_strel_vistrels.append(goroho_strel_vistrel)
+    global goroho_strel_vistrel, goroho_strel_vistrels
+    for goroho_strel1 in goroho_strels:
+        goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y)
+        goroho_strel_vistrels.append(goroho_strel_vistrel)
+
 
 def dvigenie_vistrel():
     global goroho_strel_vistrels
-    vistrel=len(goroho_strel_vistrels)
-    if vistrel>=1:
+    vistrel = len(goroho_strel_vistrels)
+    if vistrel >= 1:
         for goroho_strel_vistrel in goroho_strel_vistrels:
-            goroho_strel_vistrel.obect_vistrel.x +=3
+            goroho_strel_vistrel.obect_vistrel.x += 3
 
 
 def popodaniy_vistrel():
-    a=len(goroho_strel_vistrels)
-    if a>=1:
+    a = len(goroho_strel_vistrels)
+    if a >= 1:
         for goroho_strel_vistrel in goroho_strel_vistrels:
-            if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1):
-                zomby_1.heal-=goroho_strel_vistrel.gamag
+            if zomby_1 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1.obect_zomby):
+                    zomby_1.heal=zomby_1.heal - goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
+
+            if zomby_2 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_2.obect_zomby):
+                    zomby_2.heal=zomby_2.heal - goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
+
+            if zomby_3 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_3.obect_zomby):
+                    zomby_3.heal=zomby_3.heal - goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
+
+            if zomby_4 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_4.obect_zomby):
+                    zomby_4.heal=zomby_4.heal - goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
+            if zomby_5 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_5.obect_zomby):
+                    zomby_5.heal=zomby_5.heal - goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
+
+            if zomby_6 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_6.obect_zomby):
+                    zomby_6.heal -= goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
+
+            if zomby_7 is not None:
+                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_7.obect_zomby):
+                    zomby_7.heal -= goroho_strel_vistrel.damag
+                    goroho_strel_vistrels.pop(0)
 
 
 
-
-
-
-
-
+def del_zomby():
+    global zomby_1, zomby_2, zomby_3, zomby_4, zomby_5, zomby_6, zomby_7
+    if zomby_1 is not None:
+        if zomby_1.heal <= 0:
+            zomby_1 = None
+    if zomby_2 is not None:
+        if zomby_2.heal <= 0:
+            zomby_2 = None
+    if zomby_3 is not None:
+        if zomby_3.heal <= 0:
+            zomby_3 = None
+    if zomby_4 is not None:
+        if zomby_4.heal <= 0:
+            zomby_4 = None
+    if zomby_5 is not None:
+        if zomby_5.heal <= 0:
+            zomby_5 = None
+    if zomby_6 is not None:
+        if zomby_6.heal <= 0:
+            zomby_6 = None
+    if zomby_7 is not None:
+        if zomby_7.heal <= 0:
+            zomby_7 = None
 
 
 def step():
     popodaniy_vistrel()
-    print(zomby_1.heal)
 
+    del_zomby()
