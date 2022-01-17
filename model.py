@@ -280,6 +280,10 @@ def del_zomby():
             zomby_7 = None
 
 
+
+
+
+
 def step():
     popodaniy_vistrel()
 
