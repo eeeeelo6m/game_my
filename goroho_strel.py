@@ -4,6 +4,7 @@ from pygame import draw
 class Rastenie_goroh:
     def __init__(self,x,y):
         self.damag=1
+        self.heal=3
         self.x=x
         self.y=y
         self.obet_rasteniy=pygame.Rect(self.x,self.y,30,30)

@@ -15,6 +15,8 @@ TIMER_DRAW_ZOMBY7=event.custom_type()
 pygame.time.set_timer(TIMER_DRAW_ZOMBY7,random.randint(2000,5000),1)
 TIMER_DRAW_RASTENIA=event.custom_type()
 pygame.time.set_timer(TIMER_DRAW_RASTENIA,2000,1)
+TIMER_URON_RASTENIU=event.custom_type()
+pygame.time.set_timer(TIMER_URON_RASTENIU,1000,1)
 def control():
     e = event.get()
 
@@ -37,6 +39,14 @@ def control():
         if r.type==TIMER_DRAW_RASTENIA:
             model.groho_strel_vistrel()
             pygame.time.set_timer(TIMER_DRAW_RASTENIA, 2000, 1)
+
+
+
+
+
+
+        if model.pologenie_1=='poedanie':
+            model.uron_rasteniu()
 
 
 

@@ -1,4 +1,4 @@
-import model,veiw,controler,pygame,time,zomby
+import model,veiw,controler,time
 
 while 1==1:
     time.sleep(1/100)
