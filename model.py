@@ -21,12 +21,12 @@ cletcas_3 = []
 cletcas_4 = []
 cletcas_5 = []
 zomby_1 = zomby.vrag_zomby(1100, 90)
-zomby_2 = zomby.vrag_zomby(1100, 180)
-zomby_3 = zomby.vrag_zomby(1100, 270)
-zomby_4 = zomby.vrag_zomby(1100, 360)
-zomby_5 = zomby.vrag_zomby(1100, 450)
-zomby_6 = zomby.vrag_zomby(1100, random.choice([90, 180, 270, 360, 450]))
-zomby_7 = zomby.vrag_zomby(1100, 90)
+zomby_2 = None
+zomby_3 = None
+zomby_4 = None
+zomby_5 = None
+zomby_6 = None
+zomby_7 = None
 zombys_1 = []
 zombys_2 = []
 zombys_3 = []
@@ -46,6 +46,15 @@ pologenie_4 = 'dvigenie'
 pologenie_5 = 'dvigenie'
 pologenie_6 = 'dvigenie'
 pologenie_7 = 'dvigenie'
+y1=1050
+y2=1050
+y3=1050
+y4=1050
+y5=1050
+y6=1050
+y7=1050
+
+
 
 
 def add_cletca_1():
@@ -136,21 +145,34 @@ add_cletca_5()
 
 
 def dvigenie_zomby():
-    global zomby_1, zomby_2
+    global zomby_1, zomby_2,y1,y2,y3,y4,y5,y6,y7
+
+
+
+
+
+
     if zomby_1 is not None and pologenie_1 != 'poedanie':
-        zomby_1.obect_zomby.x -= 1
+        y1 -= 0.2
+        zomby_1.obect_zomby.x = y1
     if zomby_2 is not None and pologenie_2 == 'dvigenie':
-        zomby_2.obect_zomby.x -= 1
+        y2 -= 0.2
+        zomby_2.obect_zomby.x = y2
     if zomby_3 is not None and pologenie_3 == 'dvigenie':
-        zomby_3.obect_zomby.x -= 1
+        y3-=0.2
+        zomby_3.obect_zomby.x = y3
     if zomby_4 is not None and pologenie_4 == 'dvigenie':
-        zomby_4.obect_zomby.x -= 1
+        y4 -= 0.2
+        zomby_4.obect_zomby.x = y4
     if zomby_5 is not None and pologenie_5 == 'dvigenie':
-        zomby_5.obect_zomby.x -= 1
+        y5 -= 0.2
+        zomby_5.obect_zomby.x = y5
     if zomby_6 is not None and pologenie_6 == 'dvigenie':
-        zomby_6.obect_zomby.x -= 1
+        y6 -= 0.2
+        zomby_6.obect_zomby.x = y6
     if zomby_7 is not None and pologenie_7 == 'dvigenie':
-        zomby_7.obect_zomby.x -= 1
+        y7 -= 0.2
+        zomby_7.obect_zomby.x = y7
 
 
 def add_zombi_2():
