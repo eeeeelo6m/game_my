@@ -3,7 +3,7 @@ from pygame import event
 
 pygame.init()
 TIMER_DRAW_ZOMBY = event.custom_type()
-pygame.time.set_timer(TIMER_DRAW_ZOMBY,3000,7)
+pygame.time.set_timer(TIMER_DRAW_ZOMBY,3000)
 
 
 TIMER_DRAW_RASTENIA = event.custom_type()
@@ -16,7 +16,7 @@ def control():
     e = event.get()
 
     for r in e:
-
+        model.uron_rasteniy()
         if r.type == pygame.QUIT:
             exit()
         if r.type == TIMER_DRAW_ZOMBY:
@@ -26,8 +26,8 @@ def control():
             model.groho_strel_vistrel()
             pygame.time.set_timer(TIMER_DRAW_RASTENIA, 3000, 1)
 
-        if TIMER_URON_RASTENIU == r.type:
-            model.uron_rasteniy()
+
+
 
     model.dvigenie_vistrel()
 
