@@ -125,21 +125,9 @@ add_cletca_5()
 
 def add_zomby():
     global zomby_vrag
-    zomby_vrag=zomby.vrag_zomby(1050,random.choice([90,180,270,360,450]))
+    speed=20/10
+    zomby_vrag=zomby.vrag_zomby(x,random.choice([90,180,270,360,450]),speed)
     zombys.append(zomby_vrag)
-
-def dvigenie_zomby():
-    global zomby_vrag,x
-    if zomby_vrag is not None and pologenie != 'poedanie':
-        x-=0.3
-        for zomby_1 in zombys:
-            zomby_1.obect_zomby.x = x
-
-
-
-
-
-
 
 def add_rasteniy_1():
     global goroho_strel1, goroho_strels
@@ -177,7 +165,7 @@ def uron_rasteniy():
     global pologenie_1
     for goroho_strel in goroho_strels:
         for zomby_1 in zombys:
-            if goroho_strel.obet_rasteniy.colliderect(zomby_vrag.obect_1):
+            if goroho_strel.obet_rasteniy.colliderect(zomby_1.obect_zomby):
                 goroho_strel.heal-=zomby_1.damag
                 print(goroho_strel.heal)
                 pologenie_1 = 'poedanie'
@@ -202,5 +190,7 @@ def del_zomby():
 
 def step():
     popodaniy_vistrel()
-
     del_zomby()
+    for zomby_1 in zombys:
+        zomby_1.dvigenie()
+

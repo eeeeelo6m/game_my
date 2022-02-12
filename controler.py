@@ -3,17 +3,8 @@ from pygame import event
 
 pygame.init()
 TIMER_DRAW_ZOMBY = event.custom_type()
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, random.randint(0, 3000))
+pygame.time.set_timer(TIMER_DRAW_ZOMBY,3000,7)
 
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, random.randint(0, 3000))
-
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, random.randint(0, 3000))
-
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, random.randint(0, 3000))
-
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, random.randint(3000, 6000))
-
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, random.randint(3000, 6000))
 
 TIMER_DRAW_RASTENIA = event.custom_type()
 pygame.time.set_timer(TIMER_DRAW_RASTENIA, 3000, 1)
@@ -40,4 +31,3 @@ def control():
 
     model.dvigenie_vistrel()
 
-    model.dvigenie_zomby()
