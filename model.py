@@ -131,9 +131,10 @@ def add_zomby():
 def dvigenie_zomby():
     global zomby_vrag,x
     if zomby_vrag is not None and pologenie != 'poedanie':
-        x-=0.2
+        x-=0.3
         for zomby_1 in zombys:
             zomby_1.obect_zomby.x = x
+
 
 
 
