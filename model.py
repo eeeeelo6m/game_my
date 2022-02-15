@@ -126,13 +126,12 @@ add_cletca_5()
 def add_zomby():
     global zomby_vrag
     speed=20/10
-    zomby_vrag=zomby.vrag_zomby(x,random.choice([90,180,270,360,450]),speed)
+    zomby_vrag=zomby.vrag_zomby(x,random.choice([90,180,270,360,450]),speed,'dvigenie')
     zombys.append(zomby_vrag)
 
 
 def dvigenie_zomby():
-    if pologenie=='dvigenie':
-        for zomby_1 in zombys:
+    for zomby_1 in zombys:
             zomby_1.dvigenie()
 
 
@@ -170,14 +169,25 @@ def dvigenie_vistrel():
 
 
 def uron_rasteniy():
-    global pologenie
     for goroho_strel in goroho_strels:
         for zomby_1 in zombys:
             if goroho_strel.obet_rasteniy.colliderect(zomby_1.obect_zomby):
                 goroho_strel.heal-=zomby_1.damag
                 print(goroho_strel.heal)
-                pologenie = 'poedanie'
+                zomby_1.pologenie = 'poedanie'
 
+
+def del_rasteniy():
+    for goroho_strel in goroho_strels:
+        if goroho_strel.heal<=0:
+            goroho_strels.remove(goroho_strel)
+            izmenenie_pologeniy()
+
+
+
+def izmenenie_pologeniy():
+    for zomby_1 in zombys:
+        zomby_1.pologenie = 'dvigenie'
 
 def popodaniy_vistrel():
     a = len(goroho_strel_vistrels)
@@ -187,6 +197,7 @@ def popodaniy_vistrel():
                 if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1.obect_zomby):
                     zomby_1.heal = zomby_1.heal - goroho_strel_vistrel.damag
                     goroho_strel_vistrels.remove(goroho_strel_vistrel)
+
 
 def del_zomby():
     for zomby_1 in zombys:
@@ -198,7 +209,9 @@ def del_zomby():
 
 def step():
     popodaniy_vistrel()
+    uron_rasteniy()
     dvigenie_zomby()
+    del_rasteniy()
     del_zomby()
 
 

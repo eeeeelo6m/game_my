@@ -1,11 +1,12 @@
 import pygame,random
 from pygame import draw
 class vrag_zomby():
-    def __init__(self,x,y,speedx):
+    def __init__(self,x,y,speedx,pologenie):
         self.heal=4
         self.damag=1
         self.x=x
         self.y=y
+        self.pologenie=pologenie
         self.speedx=speedx
         self.obect_zomby=pygame.Rect(self.x,self.y,30,90)
 
@@ -14,8 +15,9 @@ class vrag_zomby():
 
 
     def dvigenie(self):
-        self.x -= self.speedx
-        self.obect_zomby.x = self.x
+        if self.pologenie != 'poedanie':
+            self.x -= self.speedx
+            self.obect_zomby.x = self.x
 
 
 
