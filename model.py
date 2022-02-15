@@ -185,6 +185,7 @@ def del_rasteniy():
 
 
 
+
 def izmenenie_pologeniy():
     for zomby_1 in zombys:
         zomby_1.pologenie = 'dvigenie'
