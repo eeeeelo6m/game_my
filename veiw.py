@@ -37,4 +37,6 @@ def veiw():
     for goroho_strel_vistrel in model.goroho_strel_vistrels:
         goroho_strel_vistrel.draw_vistrel(screen)
 
+
+
     display.flip()

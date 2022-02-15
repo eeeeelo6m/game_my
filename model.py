@@ -1,4 +1,4 @@
-import cletca_dly_rasteniy, zomby, random, goroho_strel
+import cletca_dly_rasteniy, zomby, random, goroho_strel,pygame
 
 x1 = 950
 x2 = 950
@@ -31,6 +31,12 @@ goroho_strel_vistrels = []
 pologenie = 'dvigenie'
 
 x=1050
+
+
+
+
+
+
 
 
 
@@ -185,7 +191,8 @@ def del_rasteniy():
 
 
 
-
+def add_home():
+    pass
 
 
 def izmenenie_pologeniy():
@@ -216,5 +223,6 @@ def step():
     dvigenie_zomby()
     del_rasteniy()
     del_zomby()
+
 
 
