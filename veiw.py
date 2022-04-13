@@ -1,11 +1,16 @@
-import model, zomby
+import model, help,pygame
 from pygame import draw, display
 
-screen = display.set_mode([1050, 650])
-
+screen = display.set_mode([1200, 650])
+home_cartinca = pygame.image.load('picture/Без имени.png')
+home_cartinca = help.izmeni_kartinku(home_cartinca, 180, 450, [255, 255, 255], 1)
+brocol_cartinka = pygame.image.load('picture/броколь.png')
+brocol_cartinka=help.izmeni_kartinku(brocol_cartinka,90,90,[252,252,252],5)
+brocol_cartinka_towar = pygame.image.load('picture/броколь.png')
+brocol_cartinka_towar=help.izmeni_kartinku(brocol_cartinka_towar,50,50,[252,252,252],5)
 
 def veiw():
-    screen.fill([20, 255, 20])
+    screen.fill([110, 255, 110])
     for cletcas_1 in model.cletcas_1:
         cletcas_1.draw(screen)
         model.add_cletca_1()
@@ -34,9 +39,13 @@ def veiw():
 
     for goroho_strels in model.goroho_strels:
         goroho_strels.draw_rastenie(screen)
+        screen.blit(brocol_cartinka,[goroho_strels.x,goroho_strels.y])
     for goroho_strel_vistrel in model.goroho_strel_vistrels:
         goroho_strel_vistrel.draw_vistrel(screen)
 
-
-
+    pygame.draw.rect(screen,[133,45,27],model.rect_magazin)
+    #pygame.draw.rect(screen,[0,0,0],model.rect_towar)
+    screen.blit(brocol_cartinka_towar, [model.rect_towar.x, model.rect_towar.y])
+    #draw.rect(screen,[0,0,0],model.home)
+    screen.blit(home_cartinca, [0, 90])
     display.flip()

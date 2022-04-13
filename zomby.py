@@ -23,3 +23,4 @@ class vrag_zomby():
 
 
 
+
