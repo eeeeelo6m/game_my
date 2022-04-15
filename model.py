@@ -1,5 +1,5 @@
-import cletca_dly_rasteniy, zomby, random, goroho_strel,pygame
-
+import cletca_dly_rasteniy, zomby, random, goroho_strel,pygame,pocupca
+cupleniy_towar=None
 x1 = 1100
 x2 = 1100
 x3 = 1100
@@ -219,8 +219,14 @@ def porogenie():
             exit()
 
 
+def add_rect_cupleniy_towar(x,y):
+    global cupleniy_towar
+    cupleniy_towar=pocupca.Pocupca_towara(x,y,'brocol')
 
 
+def pocupka_rasteniy(x,y):
+    if rect_towar.collidepoint(x,y):
+        add_rect_cupleniy_towar(x,y)
 
 
 
