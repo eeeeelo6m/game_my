@@ -1,5 +1,6 @@
-import cletca_dly_rasteniy, zomby, random, goroho_strel,pygame,pocupca
-cupleniy_towar=None
+import cletca_dly_rasteniy, zomby, random, goroho_strel, pygame, pocupca
+
+cupleniy_towar = None
 x1 = 1100
 x2 = 1100
 x3 = 1100
@@ -27,17 +28,10 @@ goroho_strels = []
 goroho_strel_vistrel = None
 goroho_strel_vistrels = []
 pologenie = 'dvigenie'
-x=1250
-rect_magazin=pygame.Rect([470,0],[450,70])
-rect_towar=pygame.Rect([480,10],[50,50])
-home=pygame.Rect(0,90,180,450)
-
-
-
-
-
-
-
+x = 1250
+rect_magazin = pygame.Rect([470, 0], [450, 70])
+rect_towar = pygame.Rect([480, 10], [50, 50])
+home = pygame.Rect(0, 90, 180, 450)
 
 
 def add_cletca_1():
@@ -129,38 +123,30 @@ add_cletca_5()
 
 def add_zomby():
     global zomby_vrag
-    speed=2/10
-    zomby_vrag=zomby.vrag_zomby(x,random.choice([90,180,270,360,450]),speed,'dvigenie')
+    speed = 2 / 10
+    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), speed, 'dvigenie')
     zombys.append(zomby_vrag)
 
 
 def dvigenie_zomby():
     for zomby_1 in zombys:
-            zomby_1.dvigenie()
+        zomby_1.dvigenie()
 
 
-
-def add_rasteniy_1():
+def add_rasteniy_1(x,y):
     global goroho_strel1, goroho_strels
-    goroho_strel1 = goroho_strel.Rastenie_goroh(290, 90)
-    goroho_strels.append(goroho_strel1)
-    goroho_strel1 = goroho_strel.Rastenie_goroh(290, 180)
-    goroho_strels.append(goroho_strel1)
-    goroho_strel1 = goroho_strel.Rastenie_goroh(290, 270)
-    goroho_strels.append(goroho_strel1)
-    goroho_strel1 = goroho_strel.Rastenie_goroh(290, 360)
-    goroho_strels.append(goroho_strel1)
-    goroho_strel1 = goroho_strel.Rastenie_goroh(290, 450)
+    goroho_strel1 = goroho_strel.Rastenie_goroh(x, y)
     goroho_strels.append(goroho_strel1)
 
 
-add_rasteniy_1()
+
+
 
 
 def groho_strel_vistrel():
     global goroho_strel_vistrel, goroho_strel_vistrels
     for goroho_strel1 in goroho_strels:
-        goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y+30)
+        goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
         goroho_strel_vistrels.append(goroho_strel_vistrel)
 
 
@@ -176,17 +162,16 @@ def uron_rasteniy():
     for goroho_strel in goroho_strels:
         for zomby_1 in zombys:
             if goroho_strel.obet_rasteniy.colliderect(zomby_1.obect_zomby):
-                goroho_strel.heal-=zomby_1.damag
+                goroho_strel.heal -= zomby_1.damag
                 print(goroho_strel.heal)
                 zomby_1.pologenie = 'poedanie'
 
 
 def del_rasteniy():
     for goroho_strel in goroho_strels:
-        if goroho_strel.heal<=0:
+        if goroho_strel.heal <= 0:
             goroho_strels.remove(goroho_strel)
             izmenenie_pologeniy()
-
 
 
 def add_home():
@@ -196,6 +181,7 @@ def add_home():
 def izmenenie_pologeniy():
     for zomby_1 in zombys:
         zomby_1.pologenie = 'dvigenie'
+
 
 def popodaniy_vistrel():
     a = len(goroho_strel_vistrels)
@@ -215,21 +201,56 @@ def del_zomby():
 
 def porogenie():
     for zomby_1 in zombys:
-        if home.colliderect(zomby_1.obect_zomby)==True:
+        if home.colliderect(zomby_1.obect_zomby) == True:
             exit()
 
 
-def add_rect_cupleniy_towar(x,y):
+def add_rect_cupleniy_towar(x, y):
     global cupleniy_towar
-    cupleniy_towar=pocupca.Pocupca_towara(x,y,'brocol')
+    cupleniy_towar = pocupca.Pocupca_towara(x, y, 'brocol', 'perenos')
 
 
-def pocupka_rasteniy(x,y):
-    if rect_towar.collidepoint(x,y):
-        add_rect_cupleniy_towar(x,y)
+def pocupka_rasteniy(x, y):
+    if rect_towar.collidepoint(x, y):
+        add_rect_cupleniy_towar(x, y)
+
+
+def perenos_towar(x, y):
+    global cupleniy_towar
+    if cupleniy_towar is not None:
+        if cupleniy_towar.sostoynie == 'perenos':
+            cupleniy_towar.perenos(x, y)
 
 
 
+def postonovka_towar(x,y):
+    global cupleniy_towar
+    if cupleniy_towar is not None and cupleniy_towar.sostoynie=='perenos':
+        for cletca1 in cletcas_1:
+            if cletca1.obect_cletca.collidepoint(x,y)==True and cletca1.sostoynie=='svobodno':
+                add_rasteniy_1(cletca1.x,cletca1.y)
+                cupleniy_towar = None
+                cletca1.sostoynie = 'zanyto'
+        for cletca2 in cletcas_2:
+            if cletca2.obect_cletca.collidepoint(x,y)==True and cletca2.sostoynie=='svobodno':
+                cupleniy_towar = None
+                cletca2.sostoynie = 'zanyto'
+                add_rasteniy_1(cletca2.x,cletca2.y)
+        for cletca3 in cletcas_3:
+            if cletca3.obect_cletca.collidepoint(x,y)==True and cletca3.sostoynie=='svobodno':
+                cupleniy_towar = None
+                cletca3.sostoynie = 'zanyto'
+                add_rasteniy_1(cletca3.x,cletca3.y)
+        for cletca4 in cletcas_4:
+            if cletca4.obect_cletca.collidepoint(x,y)==True and cletca4.sostoynie=='svobodno':
+                cupleniy_towar = None
+                cletca4.sostoynie = 'zanyto'
+                add_rasteniy_1(cletca4.x,cletca4.y)
+        for cletca5 in cletcas_5:
+            if cletca5.obect_cletca.collidepoint(x,y)==True and cletca5.sostoynie=='svobodno':
+                cupleniy_towar = None
+                add_rasteniy_1(cletca5.x,cletca5.y)
+                cletca5.sostoynie='zanyto'
 
 
 def step():
@@ -239,6 +260,3 @@ def step():
     del_rasteniy()
     porogenie()
     del_zomby()
-
-
-

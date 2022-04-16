@@ -1,4 +1,4 @@
-import pygame, model, veiw, random
+import pygame, model
 from pygame import event
 
 
@@ -27,6 +27,11 @@ def control():
             pygame.time.set_timer(TIMER_DRAW_RASTENIA, 3000, 1)
         if r.type==pygame.MOUSEBUTTONDOWN and r.button==pygame.BUTTON_LEFT:
             model.pocupka_rasteniy(r.pos[0],r.pos[1])
+        if r.type == pygame.MOUSEMOTION:
+            model.perenos_towar(r.pos[0],r.pos[1])
+        if r.type == pygame.MOUSEBUTTONDOWN and r.button == pygame.BUTTON_LEFT:
+            model.postonovka_towar(r.pos[0],r.pos[1])
+
 
 
 
