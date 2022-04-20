@@ -133,21 +133,18 @@ def dvigenie_zomby():
         zomby_1.dvigenie()
 
 
-def add_rasteniy_1(x,y):
+def add_rasteniy_1(x, y):
     global goroho_strel1, goroho_strels
     goroho_strel1 = goroho_strel.Rastenie_goroh(x, y)
     goroho_strels.append(goroho_strel1)
 
 
-
-
-
-
 def groho_strel_vistrel():
     global goroho_strel_vistrel, goroho_strel_vistrels
     for goroho_strel1 in goroho_strels:
-        goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
-        goroho_strel_vistrels.append(goroho_strel_vistrel)
+        if goroho_strel1.mogno_strelyt_rasteniu == True:
+            goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
+            goroho_strel_vistrels.append(goroho_strel_vistrel)
 
 
 def dvigenie_vistrel():
@@ -172,10 +169,6 @@ def del_rasteniy():
         if goroho_strel.heal <= 0:
             goroho_strels.remove(goroho_strel)
             izmenenie_pologeniy()
-
-
-def add_home():
-    pass
 
 
 def izmenenie_pologeniy():
@@ -222,35 +215,48 @@ def perenos_towar(x, y):
             cupleniy_towar.perenos(x, y)
 
 
-
-def postonovka_towar(x,y):
+def postonovka_towar(x, y):
     global cupleniy_towar
-    if cupleniy_towar is not None and cupleniy_towar.sostoynie=='perenos':
+    if cupleniy_towar is not None and cupleniy_towar.sostoynie == 'perenos':
         for cletca1 in cletcas_1:
-            if cletca1.obect_cletca.collidepoint(x,y)==True and cletca1.sostoynie=='svobodno':
-                add_rasteniy_1(cletca1.x,cletca1.y)
+            if cletca1.obect_cletca.collidepoint(x, y) == True and cletca1.sostoynie == 'svobodno':
+                add_rasteniy_1(cletca1.x, cletca1.y)
                 cupleniy_towar = None
                 cletca1.sostoynie = 'zanyto'
         for cletca2 in cletcas_2:
-            if cletca2.obect_cletca.collidepoint(x,y)==True and cletca2.sostoynie=='svobodno':
+            if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca2.sostoynie = 'zanyto'
-                add_rasteniy_1(cletca2.x,cletca2.y)
+                add_rasteniy_1(cletca2.x, cletca2.y)
         for cletca3 in cletcas_3:
-            if cletca3.obect_cletca.collidepoint(x,y)==True and cletca3.sostoynie=='svobodno':
+            if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca3.sostoynie = 'zanyto'
-                add_rasteniy_1(cletca3.x,cletca3.y)
+                add_rasteniy_1(cletca3.x, cletca3.y)
         for cletca4 in cletcas_4:
-            if cletca4.obect_cletca.collidepoint(x,y)==True and cletca4.sostoynie=='svobodno':
+            if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca4.sostoynie = 'zanyto'
-                add_rasteniy_1(cletca4.x,cletca4.y)
+                add_rasteniy_1(cletca4.x, cletca4.y)
         for cletca5 in cletcas_5:
-            if cletca5.obect_cletca.collidepoint(x,y)==True and cletca5.sostoynie=='svobodno':
+            if cletca5.obect_cletca.collidepoint(x, y) == True and cletca5.sostoynie == 'svobodno':
                 cupleniy_towar = None
-                add_rasteniy_1(cletca5.x,cletca5.y)
-                cletca5.sostoynie='zanyto'
+                add_rasteniy_1(cletca5.x, cletca5.y)
+                cletca5.sostoynie = 'zanyto'
+
+
+def mogno_strelyt():
+    global goroho_strels
+    for zomby in zombys:
+        for goroho_strel1 in goroho_strels:
+            if goroho_strel1.y == zomby.y:
+                goroho_strel1.mogno_strelyt_rasteniu = True
+
+
+def zapusk_vistrel():
+    for goroho_strel1 in goroho_strels:
+        if goroho_strel1.mogno_strelyt_rasteniu == True:
+            groho_strel_vistrel()
 
 
 def step():
@@ -259,4 +265,5 @@ def step():
     dvigenie_zomby()
     del_rasteniy()
     porogenie()
+    mogno_strelyt()
     del_zomby()

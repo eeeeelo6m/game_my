@@ -23,7 +23,7 @@ def control():
         if r.type == TIMER_DRAW_ZOMBY:
             model.add_zomby()
         if r.type == TIMER_DRAW_RASTENIA:
-            model.groho_strel_vistrel()
+            model.zapusk_vistrel()
             pygame.time.set_timer(TIMER_DRAW_RASTENIA, 3000, 1)
         if r.type==pygame.MOUSEBUTTONDOWN and r.button==pygame.BUTTON_LEFT:
             model.pocupka_rasteniy(r.pos[0],r.pos[1])
