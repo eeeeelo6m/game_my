@@ -32,6 +32,7 @@ x = 1250
 rect_magazin = pygame.Rect([470, 0], [450, 70])
 rect_towar = pygame.Rect([480, 10], [50, 50])
 home = pygame.Rect(0, 90, 180, 450)
+rect_sun=pygame.Rect([400,0],[70,90])
 
 
 def add_cletca_1():

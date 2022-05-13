@@ -3,7 +3,7 @@ from pygame import draw
 class vrag_zomby():
     def __init__(self,x,y,speedx,pologenie):
         self.heal=4
-        self.damag=1000
+        self.damag=1
         self.x=x
         self.y=y
         self.pologenie=pologenie
