@@ -35,9 +35,7 @@ def veiw():
         cletcas_5.draw(screen)
         model.add_cletca_5()
 
-    for zomby_1 in model.zombys:
-        if model.zomby_vrag is not None:
-            zomby_1.draw_zomby([255, 10, 10], screen)
+
 
 
 
@@ -53,10 +51,13 @@ def veiw():
 
     #draw.rect(screen,[0,0,0],model.home)
     screen.blit(home_cartinca, [0, 90])
+
+    draw.rect(screen,[100, 200, 100],model.rect_sun)
+    screen.blit(sun_cartinka,[model.rect_sun.x,model.rect_sun.y])
     if model.cupleniy_towar!=None:
         #model.cupleniy_towar.draw_cupleniy_towar(screen)
         screen.blit(brocol_cartinka_towar_perenos, [model.cupleniy_towar.x, model.cupleniy_towar.y])
-    draw.rect(screen,[100, 200, 100],model.rect_sun)
-    screen.blit(sun_cartinka,[model.rect_sun.x,model.rect_sun.y])
-
+    for zomby_1 in model.zombys:
+        if model.zomby_vrag is not None:
+            zomby_1.draw_zomby([255, 10, 10], screen)
     display.flip()
