@@ -47,6 +47,7 @@ def veiw():
 
     pygame.draw.rect(screen,[133,45,27],model.rect_magazin)
     #pygame.draw.rect(screen,[0,0,0],model.rect_towar)
+
     screen.blit(brocol_cartinka_towar, [model.rect_towar.x, model.rect_towar.y])
 
     #draw.rect(screen,[0,0,0],model.home)

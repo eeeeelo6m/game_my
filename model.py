@@ -141,19 +141,16 @@ def add_rasteniy_1(x, y):
 
 
 def groho_strel_vistrel():
-    global goroho_strel_vistrel, goroho_strel_vistrels
     for goroho_strel1 in goroho_strels:
-        if goroho_strel1.mogno_strelyt_rasteniu == True:
-            goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
-            goroho_strel_vistrels.append(goroho_strel_vistrel)
+        pass
+
 
 
 def dvigenie_vistrel():
-    global goroho_strel_vistrels
-    vistrel = len(goroho_strel_vistrels)
-    if vistrel >= 1:
-        for goroho_strel_vistrel in goroho_strel_vistrels:
-            goroho_strel_vistrel.obect_vistrel.x += 3
+    for goroho_strel_vistrel in goroho_strel_vistrels.copy():
+        goroho_strel_vistrel.obect_vistrel.x += 3
+        if goroho_strel_vistrel.obect_vistrel.x==1250:
+            goroho_strel_vistrels.remove(goroho_strel_vistrel)
 
 
 def uron_rasteniy():
@@ -178,13 +175,11 @@ def izmenenie_pologeniy():
 
 
 def popodaniy_vistrel():
-    a = len(goroho_strel_vistrels)
-    if a >= 1:
-        for goroho_strel_vistrel in goroho_strel_vistrels:
-            for zomby_1 in zombys:
-                if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1.obect_zomby):
-                    zomby_1.heal = zomby_1.heal - goroho_strel_vistrel.damag
-                    goroho_strel_vistrels.remove(goroho_strel_vistrel)
+    for goroho_strel_vistrel in goroho_strel_vistrels:
+        for zomby_1 in zombys:
+            if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1.obect_zomby):
+                zomby_1.heal = zomby_1.heal - goroho_strel_vistrel.damag
+                goroho_strel_vistrels.remove(goroho_strel_vistrel)
 
 
 def del_zomby():
@@ -257,7 +252,11 @@ def mogno_strelyt():
 def zapusk_vistrel():
     for goroho_strel1 in goroho_strels:
         if goroho_strel1.mogno_strelyt_rasteniu == True:
-            groho_strel_vistrel()
+            # groho_strel_vistrel()
+            goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
+            goroho_strel_vistrels.append(goroho_strel_vistrel)
+    import veiw
+    pygame.display.set_caption(str(len(goroho_strel_vistrels)) + ' ' + str(len(goroho_strels)))
 
 
 def step():
