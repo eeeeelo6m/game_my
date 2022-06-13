@@ -1,4 +1,4 @@
-import cletca_dly_rasteniy, zomby, random, goroho_strel, pygame, pocupca
+import cletca_dly_rasteniy, zomby, random, goroho_strel, pygame, pocupca,folin_sun,schet
 
 cupleniy_towar = None
 x1 = 1100
@@ -32,7 +32,11 @@ x = 1250
 rect_magazin = pygame.Rect([470, 0], [450, 70])
 rect_towar = pygame.Rect([480, 10], [50, 50])
 home = pygame.Rect(0, 90, 180, 450)
-rect_sun=pygame.Rect([400,0],[70,90])
+rect_sun_tovar=pygame.Rect([400, 0], [70, 90])
+sun_rects=[]
+sun_rect=None
+schets=[]
+
 
 
 def add_cletca_1():
@@ -124,7 +128,7 @@ add_cletca_5()
 
 def add_zomby():
     global zomby_vrag
-    speed = 2 / 10
+    speed = 3 / 10
     zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), speed, 'dvigenie')
     zombys.append(zomby_vrag)
 
@@ -140,9 +144,6 @@ def add_rasteniy_1(x, y):
     goroho_strels.append(goroho_strel1)
 
 
-def groho_strel_vistrel():
-    for goroho_strel1 in goroho_strels:
-        pass
 
 
 
@@ -258,6 +259,21 @@ def zapusk_vistrel():
     import veiw
     pygame.display.set_caption(str(len(goroho_strel_vistrels)) + ' ' + str(len(goroho_strels)))
 
+def add_sun():
+    global sun_rect
+
+    sun_rect=folin_sun.foling_sun(random.randint(300,1160) )
+    sun_rects.append(sun_rect)
+
+
+def dvigenie_sun():
+    for sun_rect in sun_rects:
+        sun_rect.fol()
+def add_schet():
+    a=schet.schet(420,60,50)
+    schets.append(a)
+def sbor_sun(x,y):
+    pass
 
 def step():
     popodaniy_vistrel()
@@ -267,3 +283,5 @@ def step():
     porogenie()
     mogno_strelyt()
     del_zomby()
+    dvigenie_sun()
+    add_schet()
