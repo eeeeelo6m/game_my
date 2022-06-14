@@ -32,7 +32,8 @@ def control():
         if r.type == TIMER_FOLING_SUN:
             model.add_sun()
             pygame.time.set_timer(TIMER_FOLING_SUN, random.randint(10000,15000), 1)
-
+        if r.type==pygame.MOUSEBUTTONDOWN and r.button==pygame.BUTTON_LEFT:
+            model.sbor_sun(r.pos[0],r.pos[1])
 
 
 

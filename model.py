@@ -268,13 +268,41 @@ def add_sun():
 
 def dvigenie_sun():
     for sun_rect in sun_rects:
-        sun_rect.fol()
+        if sun_rect.sobrano==False:
+            sun_rect.fol()
 def add_schet():
-    a=schet.schet(420,60,50)
+    a=schet.schet(420,60,50,'sun')
     schets.append(a)
-def sbor_sun(x,y):
-    pass
+def sbor_sun(x=0,y=0):
 
+    for sun_rect in sun_rects:
+        a = sun_rect.obect_sun.x - 410
+        b = sun_rect.obect_sun.y - 10
+        if sun_rect.obect_sun.collidepoint(x,y) or sun_rect.sobrano==True:
+
+            a=a/10
+            b=b/10
+            sun_rect.sobrano=True
+            sun_rect.fol(a,b,x,y)
+            if sun_rect.obect_sun.x == 410 and sun_rect.obect_sun.y == 10:
+                del_sun()
+def del_sun():
+
+    for sun_rect in sun_rects:
+        if sun_rect.obect_sun.x==410 and sun_rect.obect_sun.y==10:
+            sun_rects.remove(sun_rect)
+            for schet1 in schets:
+                if schet1.name=='sun':
+                    schet1.number_schet+=25
+
+
+
+
+
+
+
+
+#letca3.obect_cletca.collidepoint(x, y)
 def step():
     popodaniy_vistrel()
     uron_rasteniy()
@@ -285,3 +313,5 @@ def step():
     del_zomby()
     dvigenie_sun()
     add_schet()
+    sbor_sun()
+

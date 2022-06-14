@@ -5,3 +5,4 @@ while 1==1:
     veiw.veiw()
     model.step()
     controler.control()
+
