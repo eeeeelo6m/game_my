@@ -286,6 +286,7 @@ def sbor_sun(x=0,y=0):
             sun_rect.fol(a,b,x,y)
             if sun_rect.obect_sun.x == 410 and sun_rect.obect_sun.y == 10:
                 del_sun()
+                break
 def del_sun():
 
     for sun_rect in sun_rects:
@@ -294,6 +295,7 @@ def del_sun():
             for schet1 in schets:
                 if schet1.name=='sun':
                     schet1.number_schet+=25
+                    break
 
 
 
