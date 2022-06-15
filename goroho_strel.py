@@ -17,7 +17,7 @@ class Rastenie_goroh:
     def draw_vistrel(self, screen):
         draw.rect(screen, [255, 0, 0], self.obect_vistrel)
     def draw_rastenie(self, screen):
-        draw.rect(screen,[0,0,0],self.obet_rasteniy)
+        # draw.rect(screen,[0,0,0],self.obet_rasteniy)
         screen.blit(self.brocol_cartinka, [self.x, self.y])
 
 

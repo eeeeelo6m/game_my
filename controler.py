@@ -4,7 +4,7 @@ from pygame import event
 
 pygame.init()
 TIMER_DRAW_ZOMBY = event.custom_type()
-pygame.time.set_timer(TIMER_DRAW_ZOMBY, 3000)
+pygame.time.set_timer(TIMER_DRAW_ZOMBY,30000,1)
 
 TIMER_DRAW_RASTENIA = event.custom_type()
 pygame.time.set_timer(TIMER_DRAW_RASTENIA, 3000, 1)
@@ -20,11 +20,13 @@ def control():
             exit()
         if r.type == TIMER_DRAW_ZOMBY:
             model.add_zomby()
+            pygame.time.set_timer(TIMER_DRAW_ZOMBY,random.randint(5000,10000),1)
         if r.type == TIMER_DRAW_RASTENIA:
             model.zapusk_vistrel()
             pygame.time.set_timer(TIMER_DRAW_RASTENIA, 3000, 1)
         if r.type==pygame.MOUSEBUTTONDOWN and r.button==pygame.BUTTON_LEFT:
-            model.pocupka_rasteniy(r.pos[0],r.pos[1])
+            model.pocupka_rasteniy_brocol(r.pos[0],r.pos[1])
+            model.pocupka_rasteniy_sunflover(r.pos[0],r.pos[1])
         if r.type == pygame.MOUSEMOTION:
             model.perenos_towar(r.pos[0],r.pos[1])
         if r.type == pygame.MOUSEBUTTONDOWN and r.button == pygame.BUTTON_LEFT:
