@@ -36,6 +36,8 @@ rect_sun_tovar=pygame.Rect([400, 0], [70, 90])
 sun_rects=[]
 sun_rect=None
 schets=[]
+sun_schet = schet.schet(420, 60, 50, 'sun')
+schets.append(sun_schet)
 
 
 
@@ -267,35 +269,32 @@ def add_sun():
 
 
 def dvigenie_sun():
+
     for sun_rect in sun_rects:
-        if sun_rect.sobrano==False:
-            sun_rect.fol()
-def add_schet():
-    a=schet.schet(420,60,50,'sun')
-    schets.append(a)
+        sun_rect.fol()
+        print(sun_rect.obect_sun.x,sun_rect.obect_sun.y)
+        if rect_sun_tovar.contains(sun_rect.obect_sun) and sun_rect.sobrano==True:
+            del_sun(sun_rect)
+
+
+
+
+
+
 def sbor_sun(x=0,y=0):
 
     for sun_rect in sun_rects:
-        a = sun_rect.obect_sun.x - 410
-        b = sun_rect.obect_sun.y - 10
-        if sun_rect.obect_sun.collidepoint(x,y) or sun_rect.sobrano==True:
+        if sun_rect.obect_sun.collidepoint(x,y):
+            sun_rect.sbor_sun()
 
-            a=a/10
-            b=b/10
-            sun_rect.sobrano=True
-            sun_rect.fol(a,b,x,y)
-            if sun_rect.obect_sun.x == 410 and sun_rect.obect_sun.y == 10:
-                del_sun()
-                break
-def del_sun():
 
-    for sun_rect in sun_rects:
-        if sun_rect.obect_sun.x==410 and sun_rect.obect_sun.y==10:
-            sun_rects.remove(sun_rect)
-            for schet1 in schets:
-                if schet1.name=='sun':
-                    schet1.number_schet+=25
-                    break
+
+
+def del_sun(sun_rect):
+    sun_rects.remove(sun_rect)
+
+    sun_schet.number_schet+=25
+
 
 
 
@@ -314,6 +313,5 @@ def step():
     mogno_strelyt()
     del_zomby()
     dvigenie_sun()
-    add_schet()
     sbor_sun()
 

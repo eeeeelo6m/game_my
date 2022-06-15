@@ -7,30 +7,24 @@ class foling_sun:
         self.yfol=-30
         self.sobrano=False
         self.obect_sun=pygame.Rect(self.xfol,self.yfol,50,50)
-    def fol(self,speedx=None,speedy=None,x=None,y=None):
-        if self.sobrano==False:
-            self.speeedy = 7 / 10
-            self.yfol += self.speeedy
-            self.obect_sun.y =self.yfol
-        else:
-            if self.xfol<=410:
-                self.xfol=410
-                self.obect_sun.x = self.xfol
-                speedx=0
-            else:
-                self.xfol -= speedx
-                self.obect_sun.x=self.xfol
-            if self.yfol<=10:
-                self.yfol=10
-                self.obect_sun.y = self.yfol
-                speedy=0
-            else:
-                self.yfol -= speedy
-                self.obect_sun.y=self.yfol
+        self.speedy = 7 / 10
+        self.speedx=0
+    def fol(self):
+
+        self.yfol += self.speedy
+        self.obect_sun.y =self.yfol
+        self.xfol += self.speedx
+        self.obect_sun.x=self.xfol
+
+    def sbor_sun(self):
+        self.sobrano=True
+        self.speedy=-(self.yfol-10)/50
+        self.speedx=-(self.xfol-410)/50
+
 
 
 
 
     def draw_sun(self,screen):
-        #draw.rect(screen,[0,0,0],self.obect_sun)
+        draw.rect(screen,[0,0,0],self.obect_sun)
         pass
