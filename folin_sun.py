@@ -1,8 +1,11 @@
-import pygame
+import pygame,help
 from pygame import draw
+
 
 class foling_sun:
     def __init__(self,xfol):
+        self.sun_cartinka = pygame.image.load('picture/солнцебест.png')
+        self.sun_cartinka = help.izmeni_kartinku(self.sun_cartinka, 50, 50, [255, 255, 255], 50)
         self.xfol=xfol
         self.yfol=-30
         self.sobrano=False
@@ -26,5 +29,6 @@ class foling_sun:
 
 
     def draw_sun(self,screen):
-        draw.rect(screen,[0,0,0],self.obect_sun)
-        pass
+
+        #draw.rect(screen,[0,0,0],self.obect_sun)
+        screen.blit(self.sun_cartinka, [self.xfol, self.yfol])

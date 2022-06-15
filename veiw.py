@@ -4,16 +4,14 @@ from pygame import draw, display
 screen = display.set_mode([1200, 650])
 home_cartinca = pygame.image.load('picture/Без имени.png')
 home_cartinca = help.izmeni_kartinku(home_cartinca, 180, 450, [255, 255, 255], 1)
-brocol_cartinka = pygame.image.load('picture/броколь.png')
-brocol_cartinka = help.izmeni_kartinku(brocol_cartinka, 90, 90, [252, 252, 252], 5)
+
 brocol_cartinka_towar = pygame.image.load('picture/броколь.png')
 brocol_cartinka_towar = help.izmeni_kartinku(brocol_cartinka_towar, 50, 50, [252, 252, 252], 5)
 brocol_cartinka_towar_perenos = pygame.image.load('picture/броколь.png')
 brocol_cartinka_towar_perenos = help.izmeni_kartinku(brocol_cartinka_towar, 70, 70, [252, 252, 252], 5)
 sun_towar_cartinka = pygame.image.load('picture/солнцебест.png')
 sun_towar_cartinka = help.izmeni_kartinku(sun_towar_cartinka, 70, 70, [255, 255, 255], 100)
-sun_cartinka = pygame.image.load('picture/солнцебест.png')
-sun_cartinka = help.izmeni_kartinku(sun_cartinka, 50, 50, [255, 255, 255], 50)
+
 
 
 def veiw():
@@ -40,7 +38,6 @@ def veiw():
 
     for goroho_strels in model.goroho_strels:
         goroho_strels.draw_rastenie(screen)
-        screen.blit(brocol_cartinka, [goroho_strels.x, goroho_strels.y])
     for goroho_strel_vistrel in model.goroho_strel_vistrels:
         goroho_strel_vistrel.draw_vistrel(screen)
 
@@ -65,6 +62,6 @@ def veiw():
     for sun_rect in model.sun_rects:
         if model.sun_rect is not None:
             sun_rect.draw_sun(screen)
-            screen.blit(sun_cartinka, [sun_rect.xfol, sun_rect.yfol])
+
 
     display.flip()
