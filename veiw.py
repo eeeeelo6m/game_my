@@ -5,6 +5,7 @@ screen = display.set_mode([1200, 650])
 home_cartinca = pygame.image.load('picture/Без имени.png')
 home_cartinca = help.izmeni_kartinku(home_cartinca, 180, 450, [255, 255, 255], 1)
 
+
 brocol_cartinka_towar = pygame.image.load('picture/броколь.png')
 brocol_cartinka_towar = help.izmeni_kartinku(brocol_cartinka_towar, 50, 50, [252, 252, 252], 5)
 brocol_cartinka_towar_perenos = pygame.image.load('picture/броколь.png')
