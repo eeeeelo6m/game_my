@@ -151,10 +151,12 @@ def dvigenie_zomby():
         zomby_1.dvigenie()
 
 
-def add_rasteniy_1(x, y):
-    global goroho_strels
+def add_rasteniy_brocol(x, y):
     goroho_strel1 = goroho_strel.Rastenie_goroh(x, y)
     goroho_strels.append(goroho_strel1)
+
+
+
 
 
 
@@ -256,10 +258,11 @@ def perenos_towar(x, y):
 
 def postonovka_towar(x, y):
     global cupleniy_towar,sun_schet
-    if cupleniy_towar is not None and cupleniy_towar.sostoynie == 'perenos':
+    if cupleniy_towar is not None and cupleniy_towar.sostoynie == 'perenos' \
+            and cupleniy_towar.cacoe_rastenie=='brocol':
         for cletca1 in cletcas_1:
             if cletca1.obect_cletca.collidepoint(x, y) == True and cletca1.sostoynie == 'svobodno':
-                add_rasteniy_1(cletca1.x, cletca1.y)
+                add_rasteniy_brocol(cletca1.x, cletca1.y)
                 cupleniy_towar = None
                 cletca1.sostoynie = 'zanyto'
                 sun_schet.number_schet-=100
@@ -267,26 +270,63 @@ def postonovka_towar(x, y):
             if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca2.sostoynie = 'zanyto'
-                add_rasteniy_1(cletca2.x, cletca2.y)
+                add_rasteniy_brocol(cletca2.x, cletca2.y)
                 sun_schet.number_schet -= 100
         for cletca3 in cletcas_3:
             if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca3.sostoynie = 'zanyto'
-                add_rasteniy_1(cletca3.x, cletca3.y)
+                add_rasteniy_brocol(cletca3.x, cletca3.y)
                 sun_schet.number_schet -= 100
         for cletca4 in cletcas_4:
             if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca4.sostoynie = 'zanyto'
-                add_rasteniy_1(cletca4.x, cletca4.y)
+                add_rasteniy_brocol(cletca4.x, cletca4.y)
                 sun_schet.number_schet -= 100
         for cletca5 in cletcas_5:
             if cletca5.obect_cletca.collidepoint(x, y) and cletca5.sostoynie == 'svobodno':
                 cupleniy_towar = None
-                add_rasteniy_1(cletca5.x, cletca5.y)
+                add_rasteniy_brocol(cletca5.x, cletca5.y)
                 cletca5.sostoynie = 'zanyto'
                 sun_schet.number_schet -= 100
+
+
+
+    elif cupleniy_towar is not None and cupleniy_towar.sostoynie == 'perenos' \
+            and cupleniy_towar.cacoe_rastenie=='sunflover':
+        for cletca1 in cletcas_1:
+            if cletca1.obect_cletca.collidepoint(x, y) == True and cletca1.sostoynie == 'svobodno':
+                add_rasteniy_sunflover(cletca1.x, cletca1.y)
+                cupleniy_towar = None
+                cletca1.sostoynie = 'zanyto'
+                sun_schet.number_schet-=100
+        for cletca2 in cletcas_2:
+            if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                cletca2.sostoynie = 'zanyto'
+                add_rasteniy_sunflover(cletca2.x, cletca2.y)
+                sun_schet.number_schet -= 100
+        for cletca3 in cletcas_3:
+            if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                cletca3.sostoynie = 'zanyto'
+                add_rasteniy_sunflover(cletca3.x, cletca3.y)
+                sun_schet.number_schet -= 100
+        for cletca4 in cletcas_4:
+            if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                cletca4.sostoynie = 'zanyto'
+                add_rasteniy_sunflover(cletca4.x, cletca4.y)
+                sun_schet.number_schet -= 100
+        for cletca5 in cletcas_5:
+            if cletca5.obect_cletca.collidepoint(x, y) and cletca5.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                add_rasteniy_sunflover(cletca5.x, cletca5.y)
+                cletca5.sostoynie = 'zanyto'
+                sun_schet.number_schet -= 100
+
+
 
 
 def mogno_strelyt():
@@ -345,16 +385,9 @@ def add_rect_cupleniy_towar(x, y):
     if rect_towar_sunflover.collidepoint(x,y):
         cupleniy_towar = pocupca.Pocupca_towara(x, y, 'sunflover', 'perenos')
 
-def add_sunflover(x,y):
+def add_rasteniy_sunflover(x,y):
     sunflover1=Happy_sun.happy_sun(x,y)
     sunflovers.append(sunflover1)
-
-
-
-
-
-
-
 
 
 

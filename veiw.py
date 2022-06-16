@@ -12,7 +12,9 @@ brocol_cartinka_towar_perenos = help.izmeni_kartinku(brocol_cartinka_towar, 70, 
 sun_towar_cartinka = pygame.image.load('picture/солнцебест.png')
 sun_towar_cartinka = help.izmeni_kartinku(sun_towar_cartinka, 70, 70, [255, 255, 255], 100)
 sunflover_towar_cartinka = pygame.image.load('picture/покерфэйсмен.png')
-sunflover_towar_cartinka = help.izmeni_kartinku(sunflover_towar_cartinka, 50, 50, [255, 255, 255], 2)
+sunflover_towar_cartinka = help.izmeni_kartinku(sunflover_towar_cartinka, 50, 50, [255, 255, 255], 1)
+sunflover_cartinka_towar_perenos=pygame.image.load('picture/покерфэйсмен.png')
+sunflover_cartinka_towar_perenos = help.izmeni_kartinku(sunflover_cartinka_towar_perenos, 70, 70, [255, 255, 255], 1)
 
 
 
@@ -42,7 +44,8 @@ def veiw():
         goroho_strels.draw_rastenie(screen)
     for goroho_strel_vistrel in model.goroho_strel_vistrels:
         goroho_strel_vistrel.draw_vistrel(screen)
-
+    for sunflovers in model.sunflovers:
+        sunflovers.draw_sunflover(screen)
     pygame.draw.rect(screen, [133, 45, 27], model.rect_magazin)
 
     # pygame.draw.rect(screen,[0,0,0],model.rect_towar_brocol)
@@ -67,6 +70,9 @@ def veiw():
     if model.cupleniy_towar != None and model.cupleniy_towar.cacoe_rastenie=='brocol':
         # model.cupleniy_towar.draw_cupleniy_towar(screen)
         screen.blit(brocol_cartinka_towar_perenos, [model.cupleniy_towar.x, model.cupleniy_towar.y])
+    elif model.cupleniy_towar != None and model.cupleniy_towar.cacoe_rastenie=='sunflover':
+        # model.cupleniy_towar.draw_cupleniy_towar(screen)
+        screen.blit(sunflover_cartinka_towar_perenos,[model.cupleniy_towar.x, model.cupleniy_towar.y])
 
 
     for zomby_1 in model.zombys:
