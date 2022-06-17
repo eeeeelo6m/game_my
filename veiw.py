@@ -74,6 +74,9 @@ def veiw():
     elif model.cupleniy_towar != None and model.cupleniy_towar.cacoe_rastenie=='sunflover':
         # model.cupleniy_towar.draw_cupleniy_towar(screen)
         screen.blit(sunflover_cartinka_towar_perenos,[model.cupleniy_towar.x, model.cupleniy_towar.y])
+    if len(model.bigsuns)>=1:
+        for bigsuns in model.bigsuns:
+            bigsuns.draw_bigsun(screen)
 
 
     for zomby_1 in model.zombys:
