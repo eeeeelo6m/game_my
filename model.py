@@ -1,5 +1,5 @@
 import cletca_dly_rasteniy, zomby, random, goroho_strel, pygame, pocupca,folin_sun,schet,Happy_sun
-mogno_puscat=False
+
 cupleniy_towar = None
 x1 = 1100
 x2 = 1100
@@ -305,7 +305,7 @@ def postonovka_towar(x, y):
             and cupleniy_towar.cacoe_rastenie=='sunflover':
         for cletca1 in cletcas_1:
             if cletca1.obect_cletca.collidepoint(x, y) == True and cletca1.sostoynie == 'svobodno':
-                add_rasteniy_sunflover(cletca1.x, cletca1.y)
+                add_rasteniy_sunflover(cletca1.x,True, cletca1.y)
                 cupleniy_towar = None
                 cletca1.sostoynie = 'zanyto'
                 sun_schet.number_schet-=100
@@ -314,30 +314,30 @@ def postonovka_towar(x, y):
             if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca2.sostoynie = 'zanyto'
-                add_rasteniy_sunflover(cletca2.x, cletca2.y)
+                add_rasteniy_sunflover(cletca2.x,True, cletca2.y)
                 sun_schet.number_schet -= 100
                 mogno_puscat = True
         for cletca3 in cletcas_3:
             if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca3.sostoynie = 'zanyto'
-                add_rasteniy_sunflover(cletca3.x, cletca3.y)
+                add_rasteniy_sunflover(cletca3.x,True, cletca3.y)
                 sun_schet.number_schet -= 100
                 mogno_puscat = True
         for cletca4 in cletcas_4:
             if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca4.sostoynie = 'zanyto'
-                add_rasteniy_sunflover(cletca4.x, cletca4.y)
+                add_rasteniy_sunflover(cletca4.x,True, cletca4.y)
                 sun_schet.number_schet -= 100
-                mogno_puscat = True
+
         for cletca5 in cletcas_5:
             if cletca5.obect_cletca.collidepoint(x, y) and cletca5.sostoynie == 'svobodno':
                 cupleniy_towar = None
-                add_rasteniy_sunflover(cletca5.x, cletca5.y)
+                add_rasteniy_sunflover(cletca5.x,True, cletca5.y)
                 cletca5.sostoynie = 'zanyto'
                 sun_schet.number_schet -= 100
-                mogno_puscat = True
+
 
 
 
@@ -350,10 +350,10 @@ def mogno_strelyt():
                 goroho_strel1.mogno_strelyt_rasteniu = True
 
 
-def zapusk_vistrel():
+def zapusk_vistrel(TIMER):
     for goroho_strel1 in goroho_strels:
-        if goroho_strel1.mogno_strelyt_rasteniu == True:
-            # groho_strel_vistrel()
+        if goroho_strel1.mogno_strelyt_rasteniu == True and goroho_strel1.TIMER_VISTREL==TIMER:
+            goroho_strel1.reg_vistrel()
             goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
             goroho_strel_vistrels.append(goroho_strel_vistrel)
     pygame.display.set_caption(str(len(goroho_strel_vistrels)) + ' ' + str(len(goroho_strels)))
@@ -398,8 +398,8 @@ def add_rect_cupleniy_towar(x, y):
     if rect_towar_sunflover.collidepoint(x,y):
         cupleniy_towar = pocupca.Pocupca_towara(x, y, 'sunflover', 'perenos')
 
-def add_rasteniy_sunflover(x,y):
-    sunflover1=Happy_sun.happy_sun(x,y)
+def add_rasteniy_sunflover(x,a,y):
+    sunflover1=Happy_sun.happy_sun(x,y,a)
     sunflovers.append(sunflover1)
 
 
@@ -416,10 +416,13 @@ def uron_rasteniy_sunflover():
                 izmenenie_pologeniy()
 
 
-def add_bigsun():
+def add_bigsun(TIMER):
     for sunflover in sunflovers:
-        bigsun=Happy_sun.happy_sun(sunflover.obect_sunflover.x+10,sunflover.obect_sunflover.y-70)
-        bigsuns.append(bigsun)
+        if sunflover.TIMER_ADD_BIGSUN==TIMER and sunflover.mogno_puscat==True:
+            sunflover.reg_bigsun()
+            bigsun=Happy_sun.happy_sun(sunflover.obect_sunflover.x+10,sunflover.obect_sunflover.y-70)
+            bigsuns.append(bigsun)
+            sunflover.smogno_puscat = False
 
 
 
