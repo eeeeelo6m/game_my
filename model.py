@@ -1,4 +1,5 @@
-import cletca_dly_rasteniy, zomby, random, goroho_strel, pygame, pocupca,folin_sun,schet,Happy_sun
+import cletca_dly_rasteniy, zomby, random, goroho_strel, pygame, pocupca,folin_sun,schet,\
+Happy_sun,lazer_plant
 
 cupleniy_towar = None
 x1 = 1100
@@ -25,17 +26,22 @@ cletcas_5 = []
 zomby_vrag = None
 zombys = []
 pologenie = 'dvigenie'
-x = 1250
+x = 1200
 
 goroho_strels = []
 goroho_strel_vistrel = None
 goroho_strel_vistrels = []
 
 
+bananas=[]
+bananas_vistrels=[]
+
+
 rect_magazin = pygame.Rect([470, 0], [450, 70])
 
 rect_towar_brocol = pygame.Rect([480, 10], [50, 50])
 rect_towar_sunflover=pygame.Rect([550,10],[50,50])
+rect_towar_banana = pygame.Rect([620,10],[50,50])
 
 home = pygame.Rect(0, 90, 180, 450)
 
@@ -49,6 +55,7 @@ schets.append(sun_schet)
 
 sunflovers=[]
 bigsuns=[]
+
 
 
 
@@ -166,7 +173,8 @@ def dvigenie_zomby():
 def uron_rasteniy_sunflover():
     for zomby_1 in zombys:
         for sunflover in sunflovers:
-            if zomby_1.vid=='brone'and sunflover.obect_sunflover.colliderect(zomby_1.obect_zomby):
+            if zomby_1.vid=='brone'and\
+                    sunflover.obect_sunflover.colliderect(zomby_1.obect_zomby):
                 sunflover.heal -= zomby_1.damag
                 zomby_1.pologenie = 'stop'
                 zomby_1.damag=0
@@ -176,6 +184,23 @@ def uron_rasteniy_sunflover():
             if sunflover.heal<=0:
                 osvobodi_cletcu(sunflover.obect_sunflover)
                 sunflovers.remove(sunflover)
+                izmenenie_pologeniy()
+
+
+def uron_rasteniy_banana():
+    for zomby_1 in zombys:
+        for banana in bananas:
+            if zomby_1.vid=='brone'and\
+                    banana.obect_banana.colliderect(zomby_1.obect_zomby):
+                banana.heal -= zomby_1.damag
+                zomby_1.pologenie = 'stop'
+                zomby_1.damag=0
+            elif banana.obect_banana.colliderect(zomby_1.obect_zomby):
+                banana.heal -= zomby_1.damag
+                zomby_1.pologenie = 'poedanie'
+            if banana.heal<=0:
+                osvobodi_cletcu(banana.obect_banana)
+                bananas.remove(banana)
                 izmenenie_pologeniy()
 
 def add_rasteniy_brocol(x, y):
@@ -217,6 +242,7 @@ def del_rasteniy():
 
             osvobodi_cletcu(goroho_strel.obet_rasteniy)
             goroho_strels.remove(goroho_strel)
+
             izmenenie_pologeniy()
 
 
@@ -247,16 +273,27 @@ def osvobodi_cletcu(obet_rasteniy):
 
 def izmenenie_pologeniy():
     for zomby_1 in zombys:
-        zomby_1.pologenie = 'dvigenie'
+        if zomby_1.vid!='brone':
+            zomby_1.pologenie = 'dvigenie'
 
 
-def popodaniy_vistrel():
+def popodaniy_vistrel_brocol():
     for goroho_strel_vistrel in goroho_strel_vistrels:
         for zomby_1 in zombys:
             if goroho_strel_vistrel.obect_vistrel.colliderect(zomby_1.obect_zomby):
                 zomby_1.heal = zomby_1.heal - goroho_strel_vistrel.damag
                 goroho_strel_vistrels.remove(goroho_strel_vistrel)
                 break
+
+
+def popadanie_vistrel_banana():
+    for goroho_strel_vistrel in bananas_vistrels:
+        for zomby_1 in zombys:
+            if goroho_strel_vistrel.obect_lazer.colliderect(zomby_1.obect_zomby):
+                zomby_1.heal = zomby_1.heal - goroho_strel_vistrel.damage
+        bananas_vistrels.remove(goroho_strel_vistrel)
+
+
 
 
 def del_zomby():
@@ -284,6 +321,12 @@ def pocupka_rasteniy_sunflover(x, y):
     if rect_towar_sunflover.collidepoint(x,y):
         if sun_schet.number_schet >= 100:
             add_rect_cupleniy_towar(x, y)
+
+
+def pocupka_rasteniy_banana(x,y):
+    if rect_towar_banana.collidepoint(x,y) and sun_schet.number_schet>=250:
+        add_rect_cupleniy_towar(x,y)
+
 
 
 
@@ -332,64 +375,116 @@ def postonovka_towar(x, y):
                 cletca5.sostoynie = 'zanyto'
                 sun_schet.number_schet -= 100
 
-
-
     elif cupleniy_towar is not None and cupleniy_towar.sostoynie == 'perenos' \
-            and cupleniy_towar.cacoe_rastenie=='sunflover':
+             and cupleniy_towar.cacoe_rastenie == 'sunflover':
         for cletca1 in cletcas_1:
             if cletca1.obect_cletca.collidepoint(x, y) == True and cletca1.sostoynie == 'svobodno':
-                add_rasteniy_sunflover(cletca1.x,True, cletca1.y)
+                add_rasteniy_sunflover(cletca1.x, True, cletca1.y)
                 cupleniy_towar = None
                 cletca1.sostoynie = 'zanyto'
-                sun_schet.number_schet-=100
-                mogno_puscat=True
+                sun_schet.number_schet -= 100
+                mogno_puscat = True
         for cletca2 in cletcas_2:
             if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca2.sostoynie = 'zanyto'
-                add_rasteniy_sunflover(cletca2.x,True, cletca2.y)
+                add_rasteniy_sunflover(cletca2.x, True, cletca2.y)
                 sun_schet.number_schet -= 100
                 mogno_puscat = True
         for cletca3 in cletcas_3:
             if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca3.sostoynie = 'zanyto'
-                add_rasteniy_sunflover(cletca3.x,True, cletca3.y)
+                add_rasteniy_sunflover(cletca3.x, True, cletca3.y)
                 sun_schet.number_schet -= 100
                 mogno_puscat = True
         for cletca4 in cletcas_4:
             if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca4.sostoynie = 'zanyto'
-                add_rasteniy_sunflover(cletca4.x,True, cletca4.y)
+                add_rasteniy_sunflover(cletca4.x, True, cletca4.y)
                 sun_schet.number_schet -= 100
 
         for cletca5 in cletcas_5:
             if cletca5.obect_cletca.collidepoint(x, y) and cletca5.sostoynie == 'svobodno':
                 cupleniy_towar = None
-                add_rasteniy_sunflover(cletca5.x,True, cletca5.y)
+                add_rasteniy_sunflover(cletca5.x, True, cletca5.y)
                 cletca5.sostoynie = 'zanyto'
                 sun_schet.number_schet -= 100
 
 
 
+    elif cupleniy_towar is not None and cupleniy_towar.sostoynie == 'perenos' \
+            and cupleniy_towar.cacoe_rastenie=='banana':
+        for cletca1 in cletcas_1:
+            if cletca1.obect_cletca.collidepoint(x, y) == True and cletca1.sostoynie == 'svobodno':
+                add_rastenie_banana(cletca1.x,cletca1.y)
+                cupleniy_towar = None
+                cletca1.sostoynie = 'zanyto'
+                sun_schet.number_schet-=250
+        for cletca2 in cletcas_2:
+            if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                cletca2.sostoynie = 'zanyto'
+                add_rastenie_banana(cletca2.x,cletca2.y)
+                sun_schet.number_schet -= 250
+        for cletca3 in cletcas_3:
+            if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                cletca3.sostoynie = 'zanyto'
+                add_rastenie_banana(cletca3.x, cletca3.y)
+                sun_schet.number_schet -= 250
+                mogno_puscat = True
+        for cletca4 in cletcas_4:
+            if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                cletca4.sostoynie = 'zanyto'
+                add_rastenie_banana(cletca4.x, cletca4.y)
+                sun_schet.number_schet -= 250
+
+        for cletca5 in cletcas_5:
+            if cletca5.obect_cletca.collidepoint(x, y) and cletca5.sostoynie == 'svobodno':
+                cupleniy_towar = None
+                add_rastenie_banana(cletca5.x,cletca5.y)
+                cletca5.sostoynie = 'zanyto'
+                sun_schet.number_schet -= 250
 
 
-def mogno_strelyt():
-    global goroho_strels
+
+def mogno_strelyt_brocol():
+
     for zomby in zombys:
         for goroho_strel1 in goroho_strels:
             if goroho_strel1.y == zomby.y and zomby.x<=1170:
                 goroho_strel1.mogno_strelyt_rasteniu = True
 
 
-def zapusk_vistrel(TIMER):
+def mogno_strelyt_banana():
+    for zomby in zombys:
+        for banana in bananas:
+            if banana.y == zomby.y and zomby.x<=1170:
+                banana.mogu_strelyt = True
+
+
+
+
+
+
+def zapusk_vistrel_brocol(TIMER):
     for goroho_strel1 in goroho_strels:
         if goroho_strel1.mogno_strelyt_rasteniu == True and goroho_strel1.TIMER_VISTREL==TIMER:
             goroho_strel1.reg_vistrel()
             goroho_strel_vistrel = goroho_strel.Rastenie_goroh(goroho_strel1.x, goroho_strel1.y + 30)
             goroho_strel_vistrels.append(goroho_strel_vistrel)
     pygame.display.set_caption(str(len(goroho_strel_vistrels)) + ' ' + str(len(goroho_strels)))
+
+
+def zapusk_vistrel_banana(TIMER):
+    for banana in bananas:
+        if banana.mogu_strelyt == True and banana.TIMER_VISTREL==TIMER:
+            banana.reg_vistrel()
+            goroho_strel_vistrel = lazer_plant.lazer_rastenie(banana.x, banana.y + 10)
+            bananas_vistrels.append(goroho_strel_vistrel)
 
 def add_sun():
     global sun_rect
@@ -430,6 +525,8 @@ def add_rect_cupleniy_towar(x, y):
         cupleniy_towar = pocupca.Pocupca_towara(x, y, 'brocol', 'perenos')
     if rect_towar_sunflover.collidepoint(x,y):
         cupleniy_towar = pocupca.Pocupca_towara(x, y, 'sunflover', 'perenos')
+    if rect_towar_banana.collidepoint(x,y):
+        cupleniy_towar = pocupca.Pocupca_towara(x,y,'banana','perenos')
 
 def add_rasteniy_sunflover(x,a,y):
     sunflover1=Happy_sun.happy_sun(x,y,a)
@@ -456,15 +553,23 @@ def sbor_bigsuns(x,y):
             bigsuns.remove(bigsun)
 
 
+def add_rastenie_banana(x,y):
+    banana=lazer_plant.lazer_rastenie(x,y)
+    bananas.append(banana)
+
+
 
 def step():
-    popodaniy_vistrel()
+    popodaniy_vistrel_brocol()
+    popadanie_vistrel_banana()
     uron_rasteniy_brocol()
     uron_rasteniy_sunflover()
     dvigenie_zomby()
     del_rasteniy()
     porogenie()
-    mogno_strelyt()
+    mogno_strelyt_brocol()
+    uron_rasteniy_banana()
+    mogno_strelyt_banana()
     del_zomby()
     dvigenie_sun()
     sbor_sun()
