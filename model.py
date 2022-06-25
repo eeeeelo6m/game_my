@@ -44,7 +44,7 @@ sun_rects=[]
 sun_rect=None
 
 schets=[]
-sun_schet = schet.schet(400, 60, 50, 'sun')
+sun_schet = schet.schet(400, 60, 100, 'sun')
 schets.append(sun_schet)
 
 sunflovers=[]
@@ -142,7 +142,18 @@ add_cletca_5()
 def add_zomby():
     global zomby_vrag
     speed = 1.5 / 10
-    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), speed, 'dvigenie')
+    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), speed, 'dvigenie',6,1,'standart')
+    zombys.append(zomby_vrag)
+
+
+def add_fat_zomby():
+    speed = 1.5/10
+    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), speed, 'dvigenie',10,1,'fat')
+    zombys.append(zomby_vrag)
+
+
+def add_brone_zomby():
+    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), 1, 'dvigenie',20,100,'brone')
     zombys.append(zomby_vrag)
 
 
@@ -150,6 +161,22 @@ def dvigenie_zomby():
     for zomby_1 in zombys:
         zomby_1.dvigenie()
 
+
+
+def uron_rasteniy_sunflover():
+    for zomby_1 in zombys:
+        for sunflover in sunflovers:
+            if zomby_1.vid=='brone'and sunflover.obect_sunflover.colliderect(zomby_1.obect_zomby):
+                sunflover.heal -= zomby_1.damag
+                zomby_1.pologenie = 'stop'
+                zomby_1.damag=0
+            elif sunflover.obect_sunflover.colliderect(zomby_1.obect_zomby):
+                sunflover.heal -= zomby_1.damag
+                zomby_1.pologenie = 'poedanie'
+            if sunflover.heal<=0:
+                osvobodi_cletcu(sunflover.obect_sunflover)
+                sunflovers.remove(sunflover)
+                izmenenie_pologeniy()
 
 def add_rasteniy_brocol(x, y):
     goroho_strel1 = goroho_strel.Rastenie_goroh(x, y)
@@ -169,10 +196,16 @@ def dvigenie_vistrel():
             goroho_strel_vistrels.remove(goroho_strel_vistrel)
 
 
+
+
 def uron_rasteniy_brocol():
     for goroho_strel in goroho_strels:
         for zomby_1 in zombys:
-            if goroho_strel.obet_rasteniy.colliderect(zomby_1.obect_zomby):
+            if zomby_1.vid=='brone'and goroho_strel.obet_rasteniy.colliderect(zomby_1.obect_zomby):
+                goroho_strel.heal -= zomby_1.damag
+                zomby_1.pologenie = 'stop'
+                zomby_1.damag=0
+            elif goroho_strel.obet_rasteniy.colliderect(zomby_1.obect_zomby):
                 goroho_strel.heal -= zomby_1.damag
 
                 zomby_1.pologenie = 'poedanie'
@@ -346,7 +379,7 @@ def mogno_strelyt():
     global goroho_strels
     for zomby in zombys:
         for goroho_strel1 in goroho_strels:
-            if goroho_strel1.y == zomby.y:
+            if goroho_strel1.y == zomby.y and zomby.x<=1170:
                 goroho_strel1.mogno_strelyt_rasteniu = True
 
 
@@ -403,17 +436,7 @@ def add_rasteniy_sunflover(x,a,y):
     sunflovers.append(sunflover1)
 
 
-def uron_rasteniy_sunflover():
-    for zomby_1 in zombys:
-        for sunflover in sunflovers:
 
-            if sunflover.obect_sunflover.colliderect(zomby_1.obect_zomby):
-                sunflover.heal -= zomby_1.damag
-                zomby_1.pologenie = 'poedanie'
-            if sunflover.heal<=0:
-                osvobodi_cletcu(sunflover.obect_sunflover)
-                sunflovers.remove(sunflover)
-                izmenenie_pologeniy()
 
 
 def add_bigsun(TIMER):

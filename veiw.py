@@ -80,8 +80,14 @@ def veiw():
 
 
     for zomby_1 in model.zombys:
-        if model.zomby_vrag is not None:
+        if zomby_1.vid=='standart':
             zomby_1.draw_zomby([255, 10, 10], screen)
+    for zomby_1 in model.zombys:
+        if zomby_1.vid=='fat':
+            zomby_1.draw_zomby([84,154,53], screen)
+    for zomby_1 in model.zombys:
+        if zomby_1.vid=='brone':
+            zomby_1.draw_zomby([91,70,89], screen)
 
 
     for sun_rect in model.sun_rects:

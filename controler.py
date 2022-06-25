@@ -5,6 +5,10 @@ from pygame import event
 pygame.init()
 TIMER_DRAW_ZOMBY = event.custom_type()
 pygame.time.set_timer(TIMER_DRAW_ZOMBY,30000,1)
+TIMER_DRAW_FAT_ZOMBY = event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_FAT_ZOMBY,60000,1)
+TIMER_DRAW_BRONE_ZOMBY = event.custom_type()
+pygame.time.set_timer(TIMER_DRAW_BRONE_ZOMBY,120000,1)
 
 TIMER_FOLING_SUN = event.custom_type()
 pygame.time.set_timer(TIMER_FOLING_SUN, 1000, 1)
@@ -20,7 +24,12 @@ def control():
         if r.type == TIMER_DRAW_ZOMBY:
             model.add_zomby()
             pygame.time.set_timer(TIMER_DRAW_ZOMBY,random.randint(5000,10000),1)
-
+        if r.type == TIMER_DRAW_FAT_ZOMBY:
+            model.add_fat_zomby()
+            pygame.time.set_timer(TIMER_DRAW_FAT_ZOMBY, random.randint(15000,20000), 1)
+        if r.type == TIMER_DRAW_BRONE_ZOMBY:
+            model.add_brone_zomby()
+            pygame.time.set_timer(TIMER_DRAW_BRONE_ZOMBY, random.randint(50000,60000), 1)
         model.zapusk_vistrel(r.type)
 
         if r.type==pygame.MOUSEBUTTONDOWN and r.button==pygame.BUTTON_LEFT:
