@@ -20,6 +20,8 @@ banana_towar_cartinka=pygame.image.load('picture/банана.png')
 banana_towar_cartinka= help.izmeni_kartinku(banana_towar_cartinka,50,50,[255,255,255],10)
 banana_perenos_cartinka=pygame.image.load('picture/банана.png')
 banana_perenos_cartinka= help.izmeni_kartinku(banana_towar_cartinka,70,70,[255,255,255],10)
+lopata_cartinka=pygame.image.load('picture/лопата.png')
+lopata_cartinka= help.izmeni_kartinku(lopata_cartinka,70,70,[255,255,255],10)
 
 
 
@@ -93,6 +95,13 @@ def veiw():
     if len(model.bigsuns)>=1:
         for bigsuns in model.bigsuns:
             bigsuns.draw_bigsun(screen)
+    if model.vikapovatel is not None:
+        # pygame.draw.rect(screen,[0,0,0],model.vikapovatel)
+        screen.blit(lopata_cartinka,[model.vikapovatel.x,model.vikapovatel.y])
+    # pygame.draw.rect(screen,[0,0,0],model.lapata)
+    screen.blit(lopata_cartinka, [model.lapata.x, model.lapata.y])
+
+
 
 
 

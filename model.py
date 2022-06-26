@@ -56,6 +56,10 @@ schets.append(sun_schet)
 sunflovers=[]
 bigsuns=[]
 
+lapata=pygame.Rect([920,0],[70,70])
+
+vikapovatel=None
+
 
 
 
@@ -144,6 +148,43 @@ add_cletca_2()
 add_cletca_3()
 add_cletca_4()
 add_cletca_5()
+
+
+def funkciy_lopati(x,y):
+    if lapata.collidepoint(x,y):
+        add_vikapovatel(x,y)
+
+
+def add_vikapovatel(x,y):
+    global vikapovatel
+    vikapovatel = pygame.Rect([x, y], [70, 70])
+
+
+def dvigenie_vikapovatel(x,y):
+    global vikapovatel
+    if vikapovatel is not None:
+        vikapovatel = pygame.Rect([x, y], [70, 70])
+
+
+
+def funkciy_vikapovatel(x,y):
+    global vikapovatel
+    for goroho_strel in goroho_strels:
+        if goroho_strel.obet_rasteniy.collidepoint(x, y):
+            osvobodi_cletcu(goroho_strel.obet_rasteniy)
+            goroho_strels.remove(goroho_strel)
+            vikapovatel = None
+
+    for sunflover in sunflovers:
+        if sunflover.obect_sunflover.collidepoint(x,y):
+            osvobodi_cletcu(sunflover.obect_sunflover)
+            sunflovers.remove(sunflover)
+            vikapovatel = None
+    for banana in bananas:
+        if banana.obect_banana.collidepoint(x,y):
+            osvobodi_cletcu(banana.obect_banana)
+            bananas.remove(banana)
+            vikapovatel = None
 
 
 def add_zomby():

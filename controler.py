@@ -38,6 +38,10 @@ def control():
             model.pocupka_rasteniy_sunflover(r.pos[0],r.pos[1])
             model.pocupka_rasteniy_banana(r.pos[0],r.pos[1])
             model.sbor_bigsuns(r.pos[0],r.pos[1])
+            model.funkciy_lopati(r.pos[0],r.pos[1])
+            model.funkciy_vikapovatel(r.pos[0],r.pos[1])
+        if r.type==pygame.MOUSEMOTION:
+            model.dvigenie_vikapovatel(r.pos[0],r.pos[1])
         if r.type == pygame.MOUSEMOTION:
             model.perenos_towar(r.pos[0],r.pos[1])
         if r.type == pygame.MOUSEBUTTONDOWN and r.button == pygame.BUTTON_LEFT:
