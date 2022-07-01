@@ -50,7 +50,7 @@ sun_rects=[]
 sun_rect=None
 
 schets=[]
-sun_schet = schet.schet(400, 60, 100, 'sun')
+sun_schet = schet.schet(400, 60, 1000, 'sun')
 schets.append(sun_schet)
 
 sunflovers=[]
@@ -169,22 +169,23 @@ def dvigenie_vikapovatel(x,y):
 
 def funkciy_vikapovatel(x,y):
     global vikapovatel
-    for goroho_strel in goroho_strels:
-        if goroho_strel.obet_rasteniy.collidepoint(x, y):
-            osvobodi_cletcu(goroho_strel.obet_rasteniy)
-            goroho_strels.remove(goroho_strel)
-            vikapovatel = None
+    if vikapovatel is not None:
+        for goroho_strel in goroho_strels:
+            if goroho_strel.obet_rasteniy.collidepoint(x, y):
+                osvobodi_cletcu(goroho_strel.obet_rasteniy)
+                goroho_strels.remove(goroho_strel)
+                vikapovatel = None
 
-    for sunflover in sunflovers:
-        if sunflover.obect_sunflover.collidepoint(x,y):
-            osvobodi_cletcu(sunflover.obect_sunflover)
-            sunflovers.remove(sunflover)
-            vikapovatel = None
-    for banana in bananas:
-        if banana.obect_banana.collidepoint(x,y):
-            osvobodi_cletcu(banana.obect_banana)
-            bananas.remove(banana)
-            vikapovatel = None
+        for sunflover in sunflovers:
+            if sunflover.obect_sunflover.collidepoint(x,y):
+                osvobodi_cletcu(sunflover.obect_sunflover)
+                sunflovers.remove(sunflover)
+                vikapovatel = None
+        for banana in bananas:
+            if banana.obect_banana.collidepoint(x,y):
+                osvobodi_cletcu(banana.obect_banana)
+                bananas.remove(banana)
+                vikapovatel = None
 
 
 def add_zomby():
@@ -201,7 +202,7 @@ def add_fat_zomby():
 
 
 def add_brone_zomby():
-    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), 1, 'dvigenie',20,100,'brone')
+    zomby_vrag = zomby.vrag_zomby(x, random.choice([90, 180, 270, 360, 450]), 3, 'dvigenie',20,300,'brone')
     zombys.append(zomby_vrag)
 
 
@@ -365,7 +366,7 @@ def pocupka_rasteniy_sunflover(x, y):
 
 
 def pocupka_rasteniy_banana(x,y):
-    if rect_towar_banana.collidepoint(x,y) and sun_schet.number_schet>=250:
+    if rect_towar_banana.collidepoint(x,y) and sun_schet.number_schet>=275:
         add_rect_cupleniy_towar(x,y)
 
 
@@ -379,6 +380,13 @@ def perenos_towar(x, y):
     if cupleniy_towar is not None:
         if cupleniy_towar.sostoynie == 'perenos':
             cupleniy_towar.perenos(x, y)
+
+
+def del_perenos_tovar(x,y):
+    global cupleniy_towar
+    if cupleniy_towar is not None:
+        if cupleniy_towar.cupleniy_rect.collidepoint(x,y):
+            cupleniy_towar=None
 
 
 def postonovka_towar(x, y):
@@ -462,38 +470,37 @@ def postonovka_towar(x, y):
                 add_rastenie_banana(cletca1.x,cletca1.y)
                 cupleniy_towar = None
                 cletca1.sostoynie = 'zanyto'
-                sun_schet.number_schet-=250
+                sun_schet.number_schet-=200
         for cletca2 in cletcas_2:
             if cletca2.obect_cletca.collidepoint(x, y) == True and cletca2.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca2.sostoynie = 'zanyto'
                 add_rastenie_banana(cletca2.x,cletca2.y)
-                sun_schet.number_schet -= 250
+                sun_schet.number_schet -= 200
         for cletca3 in cletcas_3:
             if cletca3.obect_cletca.collidepoint(x, y) == True and cletca3.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca3.sostoynie = 'zanyto'
                 add_rastenie_banana(cletca3.x, cletca3.y)
-                sun_schet.number_schet -= 250
+                sun_schet.number_schet -= 200
                 mogno_puscat = True
         for cletca4 in cletcas_4:
             if cletca4.obect_cletca.collidepoint(x, y) == True and cletca4.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 cletca4.sostoynie = 'zanyto'
                 add_rastenie_banana(cletca4.x, cletca4.y)
-                sun_schet.number_schet -= 250
+                sun_schet.number_schet -= 200
 
         for cletca5 in cletcas_5:
             if cletca5.obect_cletca.collidepoint(x, y) and cletca5.sostoynie == 'svobodno':
                 cupleniy_towar = None
                 add_rastenie_banana(cletca5.x,cletca5.y)
                 cletca5.sostoynie = 'zanyto'
-                sun_schet.number_schet -= 250
+                sun_schet.number_schet -= 200
 
 
 
 def mogno_strelyt_brocol():
-
     for zomby in zombys:
         for goroho_strel1 in goroho_strels:
             if goroho_strel1.y == zomby.y and zomby.x<=1170:

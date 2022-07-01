@@ -40,6 +40,8 @@ def control():
             model.sbor_bigsuns(r.pos[0],r.pos[1])
             model.funkciy_lopati(r.pos[0],r.pos[1])
             model.funkciy_vikapovatel(r.pos[0],r.pos[1])
+        if r.type== pygame.MOUSEBUTTONDOWN and r.button==pygame.BUTTON_RIGHT:
+            model.del_perenos_tovar(r.pos[0],r.pos[1])
         if r.type==pygame.MOUSEMOTION:
             model.dvigenie_vikapovatel(r.pos[0],r.pos[1])
         if r.type == pygame.MOUSEMOTION:
